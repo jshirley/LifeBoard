@@ -1,8 +1,8 @@
+<div class="split-page">
 [%~
 
-form(
-    sections => [ 'auth/login_form.tt' ]
-);
+form( classes => [ 'hbox' ], sections => [ 'auth/login_form.tt' ] );
+form( classes => [ 'hbox' ], sections => [ 'auth/register_form.tt' ] );
 
 ~%]
-
+</div>

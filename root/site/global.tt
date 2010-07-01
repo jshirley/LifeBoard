@@ -17,7 +17,7 @@ MACRO form(params) BLOCK;
         END;
     END;
     IF params.action; form_actions = [ params.action ]; END;
-    IF form_scopes.size > 1;
+    IF form_scopes.size > 2;
         FOREACH sc IN form_scopes;
             IF loop.first; "<ul>"; END %]
             <li><a href="#scope_[% sc.0 %]">[% sc.1 | html %]</a></li>
@@ -25,7 +25,7 @@ MACRO form(params) BLOCK;
         END;
     END;
     IF form_actions.unique.size == 1 %]
-      <form method="post" action="[% form_actions.0 %]">
+    <form method="post" action="[% form_actions.0 %]" class="[% params.classes.join(' ') %]">
         <input type="hidden" name="_page.referrer" value="[% c.req.uri | html %]">
         [% form_contents.join('') %]
         <div class="button"><input type="submit" value="[% submit_label %]"></div>

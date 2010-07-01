@@ -16,6 +16,7 @@ END;
     [% header %]
     <div class="main section">
         <div class="content yui3-main">
+            [% PROCESS site/messages.tt %]
             [% content %]
         </div>
     </div>

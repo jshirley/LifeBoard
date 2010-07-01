@@ -108,7 +108,7 @@ table.cal tbody td ul {
 table.cal tbody td ul li {
     display: block;
     list-style: none;
-    margin: 0 0 0 28px;
+    margin: 0;
     padding: 1ex 0;
     text-align: left;
     min-height: 30px;
@@ -139,10 +139,25 @@ table.cal tbody td ul li:hover {
 table.cal tbody td ul li a { display: none; }
 table.cal tbody td ul li:hover a {
     display: block;
-    width: 28px;
+    width: 24px;
     float: left;
     text-align: center;
 }
+
+table.cal tbody td ul li p {
+    margin-left: 28px;
+    padding: 2px;
+}
+table.cal tbody td ul li:hover p {
+    background-color: #55aa2a;
+    background: -webkit-gradient(linear, left top, left bottom, from(#72b94f), to(#55aa2a));
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    color: #fff;
+
+}
+
 
 /* overlay CSS */
 .yui3-overlay-content {
@@ -208,5 +223,110 @@ table.cal tbody td ul li:hover a {
     background: -webkit-gradient(linear, left top, left bottom, from(#f47a20), to(#faa51a));
     background: -moz-linear-gradient(top,  #f47a20,  #faa51a);
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f47a20', endColorstr='#faa51a');
+}
+
+.split-page {
+    margin: 4em;
+    color: #333;
+    background-color: #f0eee4;
+    -webkit-box-shadow: 2px 3px 10px rgba(0,0,0,.3);
+
+    display: -webkit-box;
+    -webkit-box-orient: horizontal;
+    -webkit-box-align: stretch;
+}
+
+.split-page .hbox {
+    -webkit-box-flex: 1;
+    display: block;
+    padding: 2em;
+}
+
+fieldset { padding: 1em; }
+fieldset legend { font-weight: bold; font-size: 116%; width: 100%; }
+
+fieldset div.text_group { line-height: 1.4em; padding: 6px 0; clear: both; overflow: hidden; }
+fieldset div.error input { border-color: red; }
+fieldset div.error label { color: red; }
+fieldset p.error { color: red; margin: 0; text-align: left;}
+fieldset div.text_group label { 
+    display: block;
+    float: left;
+    width: 14em;
+    text-align: right;
+}
+fieldset input { padding: 1px; }
+fieldset div.input_group,
+fieldset div.messages,
+fieldset input,
+fieldset select,
+fieldset textarea
+{
+    display: block;
+    margin-left: 15em; 
+}
+fieldset div.text_group label.banner { 
+    text-align: left; width: 100%; clear: both;
+}
+fieldset .help { float: right; }
+fieldset legend { float: left; border-bottom: 1px solid #999; }
+fieldset legend img { vertical-align: -3px; padding: 0 5px; }
+
+fieldset .text_group .input_group input,
+fieldset .text_group .input_group label,
+fieldset .text_group .input_group select,
+fieldset .text_group .input_group span.display_field
+{
+    text-align: left; display: inline; margin: 0; width: auto;
+}
+fieldset .text_group .input_group br { clear: both; padding-top: 2px; }
+
+fieldset .text_group .display_field,
+fieldset .text_group .extra { display: block; margin-left: 15em; font-style: italic; }
+.button_group { clear: both; text-align: center; }
+.button_group input { margin: 1em 0; }
+form .button_group,
+fieldset .button_group { margin-left: 15em; text-align: left; }
+
+/* messages */
+.message { margin: 1em 4em; }
+.message aside {
+    -webkit-border-radius: 7px;
+    -moz-border-radius: 7px;
+    border-radius: 7px;
+    color: #fff;
+    font-size: 14px;
+    margin: 0 0 1em 0; padding: 5px;
+    overflow: hidden;
+}
+.message aside p {
+    font-size: 16px;
+    font-weight: bold;
+    margin: 0; padding: .25em .5em;
+}
+.message aside.gmessage {
+    background-color: #55aa2a;
+    background: -webkit-gradient(linear, left top, left bottom, from(#72b94f), to(#55aa2a));
+    background: -moz-linear-gradient(top, #72b94f, #55aa2a);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#7ab94f', endColorstr='#55aa2a');
+    text-shadow: #558342 0 -1px;
+}
+.message aside.rmessage {
+    background-color: #b31f1e;
+    background: -webkit-gradient(linear, left top, left bottom, from(#ba3433), to(#b31f1e));
+    background: -moz-linear-gradient(top, #ba3433, #b31f1e);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ba3433', endColorstr='#b31f1e');
+    text-shadow: #84372b 0 -1px;
+}
+.message aside.omessage {
+    background-color: #de691f;
+    background: -webkit-gradient(linear, left top, left bottom, from(#e3782f), to(#de691f));
+    background: -moz-linear-gradient(top, #e3782f, #de691f);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#e3782f', endColorstr='#de691f');
+    text-shadow: #95582d 0 -1px;
+}
+.message aside a {
+    color: #fff;
+    text-decoration: none;
 }
 

@@ -1,0 +1,20 @@
+msgid "FIELD REQUIRED SPLAT"
+msgstr "&#10036;"
+
+msgid "invalid_id"
+msgstr "This username is already in use (or is invalid)"
+
+msgid "missing_id"
+msgstr "Please tell us a login name"
+
+msgid "missing_name"
+msgstr "Don't be shy, you can tell us who you are"
+
+msgid "missing_password"
+msgstr "A password is required"
+
+msgid "missing_password_confirm"
+msgstr "Type your password twice, it will help you remember"
+
+msgid "invalid_password"
+msgstr "Your passwords don't match, try 'em again"

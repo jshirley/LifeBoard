@@ -9,7 +9,7 @@ SET ymd = day.ymd;
    [% IF notes.exists(ymd) %]
    <ul>
     [% FOREACH note = notes.$ymd %]
-    <li id="note-[% note.id %]" class="note"><a href="[% c.uri_for_action('/calendar/note/object', [ note.id ]) %]" class="rest-delete"><img src="[% static('images/trash.png') %]"></a><p>[% note.note.contents %]</p></li>
+    <li id="note-[% note.id %]" class="note"><a href="[% c.uri_for_action('/calendar/note/object', [ note.id ]) %]" class="rest-delete"><img src="[% static('images/trash.png') %]"></a><p>[% note.note.contents | html_line_break %]</p></li>
     [% END %]
    </ul>
    [% END %]

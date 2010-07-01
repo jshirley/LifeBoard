@@ -2,9 +2,11 @@ YUI().use("io-form", "json", "substitute", "datatype-date", "overlay", "event-de
     var header = Y.one('.container header');
     var table  = Y.one('.container table.cal');
     var footer = Y.one('.container footer');
-    var height = footer.get('winHeight') - header.get('offsetHeight') - footer.get('offsetHeight');
-    // XX this should really be applied to the TDs, divided by 5?
-    table.setStyle('height', height + 'px');
+    var height = footer.get('winHeight') - header.get('offsetHeight') - footer.get('offsetHeight') - table.one('thead').get('offsetHeight');
+    height = parseInt(height / 5);
+
+    // XX this has to be done better somehow.
+    table.all('tbody td').setStyle('height', height + 'px');
 
     var blank_content = "<form method=\"post\" action=\"/calendar/note{id}\"><input type=\"hidden\" name=\"date\" value=\"{date}\"><textarea style=\"width: 100%; height: 90%;\" name=\"note\">{note}</textarea><div><input type=\"submit\" value=\"Save note\"></div></form>";
 

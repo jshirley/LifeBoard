@@ -33,18 +33,6 @@ The root page (/)
 sub setup : Chained('/') PathPart('') CaptureArgs(0) {
     my ( $self, $c ) = @_;
 
-    if ( defined ( my $errors = $c->flash->{errors} ) ) {
-        my $stack = $c->stash->{messages} || Message::Stack->new;
-
-        foreach my $scope ( keys %{ $errors } ) {
-            $c->log->debug("Fetching errors for scope: $scope");
-            $c->stash->{results}->{$scope} = $errors->{$scope};
-            Message::Stack::DataVerifier->parse( $stack, $scope, $errors->{$scope} );
-        }
-        $c->stash->{stack}      = $stack;
-        $c->stash->{messages} ||= $stack;
-    }
-
     unless ( $c->user_exists ) {
         $c->res->redirect( $c->uri_for_action('/auth/login') );
         $c->detach;

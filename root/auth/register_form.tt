@@ -1,0 +1,28 @@
+[%~
+
+DEFAULT section.action = c.uri_for_action('/auth/register');
+DEFAULT section.title  = c.loc('Register for a new account');
+DEFAULT section.scope  = 'register';
+
+text_field({
+    label    => 'Login', name => 'id',
+    value    => form.id.value || c.user.id,
+});
+
+text_field({
+    label    => 'Display Name', name => 'name',
+    value    => form.name.value
+});
+
+password_field({
+    label => 'Password', name => 'password',
+    value => '', autocomplete => 0
+});
+
+password_field({
+    label => 'Verify Password', name => 'password_confirm',
+    value => '', autocomplete => 0
+});
+
+~%]
+

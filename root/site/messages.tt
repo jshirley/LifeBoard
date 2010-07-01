@@ -1,21 +1,12 @@
-[%~ IF messages || message_stack ~%]
-<div class="messages">
-[%~ FOREACH message IN messages;
-      SET message_type = message.type    || 'info';
-      SET message_msg = message.message || message;
-      IF message_msg %]
-      <div class="message [% message.type || 'info' %]">[% message.message %]</div>
-      [% END;
-    END ~%]
- [% FOREACH gpos IN message_stack.for_scope('global').for_level('success').messages %]
-    <div class="gmessage" [% UNLESS gpos %]style="display: none"[% END %]><p>[% c.loc(gpos.id || gpos.text) %]</p></div>
+[%~ DEFAULT message_scope = 'global' ~%]
+<section class="message">
+ [% FOREACH gpos IN message_stack.for_scope(message_scope).for_level('success').messages %]
+    <aside class="gmessage" [% UNLESS gpos %]style="display: none"[% END %]><p>[% c.loc(gpos.id || gpos.text) %]</p></aside>
  [% END %]
- [% FOREACH gerr IN message_stack.for_scope('global').for_level('error').messages %]
-    <div class="rmessage" [% UNLESS gerr %]style="display: none"[% END %]><p>[% c.loc(gerr.id || gerr.text) %]</p></div>
+ [% FOREACH gerr IN message_stack.for_scope(message_scope).for_level('error').messages %]
+    <aside class="rmessage" [% UNLESS gerr %]style="display: none"[% END %]><p>[% c.loc(gerr.id || gerr.text) %]</p></aside>
  [% END %]
- [% FOREACH gwarn IN message_stack.for_scope('global').for_level('warning').messages %]
-    <div class="omessage" [% UNLESS gwarn %]style="display: none"[% END %]><p>[% c.loc(gwarn.id || gwarn.text) %]</p></div>
+ [% FOREACH gwarn IN message_stack.for_scope(message_scope).for_level('warning').messages %]
+ 	<aside class="omessage" [% UNLESS gwarn %]style="display: none"[% END %]><p>[% c.loc(gwarn.id || gwarn.text) %]</p></aside>
  [% END %]
-</div>
-[%~ END ~%]
-
+</section>

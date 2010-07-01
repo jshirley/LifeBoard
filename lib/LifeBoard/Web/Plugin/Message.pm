@@ -71,7 +71,7 @@ sub message {
     my ( $c, $message ) = @_;
 
     my $default   = $c->config->{'Plugin::Message'}->{default_type} || 'success';
-    my $stash_key = $c->config->{'Plugin::Message'}->{stash_key} || 'messages';
+    my $stash_key = $c->config->{'Plugin::Message'}->{stash_key} || 'message_stack';
     $c->stash->{$stash_key} ||= Message::Stack->new;
     my $stash = $c->stash->{$stash_key};
 
@@ -114,12 +114,23 @@ sub has_messages {
 sub dispatch {
     my $c   = shift;
 
-    my $stash_key = $c->config->{'Plugin::Message'}->{stash_key} || 'messages';
-    my $flash_key = $c->config->{'Plugin::Message'}->{flash_key} || '_messages';
+    my $stash_key = $c->config->{'Plugin::Message'}->{stash_key} || 'message_stack';
+    my $flash_key = $c->config->{'Plugin::Message'}->{flash_key} || '_message_stack';
 
     # Copy to the stash
     if ( $c->can('flash') and $c->flash->{$flash_key} ) {
         $c->stash->{$stash_key} = delete $c->flash->{$flash_key};
+        $c->log->_dump( $c->stash->{$stash_key} );
+    }
+
+    if ( defined ( my $errors = $c->flash->{errors} ) ) {
+        my $stack = $c->stash->{$stash_key} || Message::Stack->new;
+
+        foreach my $scope ( keys %{ $errors } ) {
+            $c->stash->{results}->{$scope} = $errors->{$scope};
+            Message::Stack::DataVerifier->parse( $stack, $scope, $errors->{$scope} );
+        }
+        $c->stash->{$stash_key} = $stack;
     }
 
     my $ret = $c->next::method(@_);
@@ -130,7 +141,8 @@ sub dispatch {
     my $messages = $c->stash->{$stash_key};
     return $ret unless defined $messages;
 
-    if ( $messages->has_messages and $c->response->location) {
+    if ( $messages->has_messages and $c->response->location ) {
+        $c->log->_dump({ $flash_key => $messages });
         $c->flash->{$flash_key} = $messages;
     }
     return $ret;
