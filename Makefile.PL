@@ -15,8 +15,18 @@ requires 'Catalyst::Plugin::Static::Simple';
 requires 'Catalyst::Action::RenderView';
 requires 'Moose';
 requires 'namespace::autoclean';
-requires 'Config::General'; # This should reflect the config file format you've chosen
-                 # See Catalyst::Plugin::ConfigLoader for supported formats
+requires 'YAML';
+
+requires 'KiokuDB';
+requires 'KiokuX::User';
+requires 'KiokuDB::Backend::DBI';
+requires 'Catalyst::Model::KiokuDB';
+requires 'Catalyst::Authentication::Store::KiokuDB';
+
+requires 'Message::Stack';
+requires 'Data::Verifier';
+requires 'Data::Manager';
+
 test_requires 'Test::More' => '0.88';
 catalyst;
 
