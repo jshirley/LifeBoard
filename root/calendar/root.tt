@@ -1,5 +1,8 @@
 [%~
+
 page.title = c.loc('Calendar View');
+page.body.scripts.push('calendar.js');
+
 ~%]
 <table class="cal">
  <thead>
