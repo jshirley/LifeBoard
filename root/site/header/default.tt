@@ -1,7 +1,7 @@
 <header>
 [% IF c.user_exists %]
-    It is [% now | date_long %] and you are logged in as [% c.user.get_object.name %].
+    <h1>It is [% now | date_long %] and you are logged in as [% c.user.get_object.name %].</h1>
 [% ELSE %]
-    It is [% now | date_long %], you are not logged in.
+    <h1>It is [% now | date_long %], you are not logged in.</h1>
 [% END %]
 </header>

@@ -3,8 +3,8 @@
 IF c.debug && debug_init.defined; $debug_init; END;
 
 ~%]
-<!DOCTYPE HTML public>
-<html>
+<!DOCTYPE html>
+<html lang="[% page.language %]">
  <head>
   <title>[% IF page.title; page.title; " - "; c.config.name; ELSE; c.config.name; END; %]</title>
   <meta http-equiv="Content-Language" content="[% page.language %]">

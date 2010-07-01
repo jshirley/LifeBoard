@@ -1,11 +1,13 @@
 html {
     background-color: rgba(0,0,0,0.5);
     background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(255, 255, 255, 0.9)), to(rgba(22, 39, 45, 0.3)));
+    background-image: -moz-linear-gradient(top, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.3) 30%);
     height: 100%;
 }
 
 footer,
-header {
+header h1 {
+    clear: both;
     margin: 0;
     padding: .7em 0 .5em 0;
     background-color: #369;
@@ -14,16 +16,21 @@ header {
     color: #fff;
 }
 
-header  {
+header h1 {
     color: #fff;
     font-size: 22px;
     text-shadow: #333 1px 1px 1px;
     text-align: center; 
-}
 
+    margin: 0;
+    font-size: 22px;
+    padding: .7em 0 .5em 0;
+    background-color: #369;
+    background-image: -moz-linear-gradient(top, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.5) 30%, rgba(255, 255, 255, 0.3) 60%, transparent 60%, rgba(0, 0, 0, 0.2)); /* Linear gradient for Mozilla browsers */
+}
 footer {
     position: absolute;
-    bottom: 0;
+    bottom: 0; left: 0;
     width: 100%;
     padding: 4px 0;
     overflow: hidden;
@@ -39,7 +46,7 @@ table.cal {
     border-collapse: collapse;
 }
 
-table.cal thead th { border: none; border-bottom: 1px solid #000; }
+table.cal thead th { border: none; border-bottom: 1px solid #000; border-top: 1px solid #000; }
 table.cal thead a {
     background: #eee;
     border: 1px solid #000;
@@ -69,7 +76,7 @@ table.cal td:last-child {
 table.cal tbody tr td.current {
     background-color: #d9d9c7;
     background: -webkit-gradient(linear, left top, left bottom, from(rgba(217,217,199,0.5)), to(rgba(217,217,199, 0.5)));
-    background: -moz-linear-gradient(top, #ba3433, #b31f1e);
+    background: -moz-linear-gradient(top, rgba(217,217,199,0.5), rgba(217,217,199,0.5));
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ba3433', endColorstr='#b31f1e');
     color: #000;
 }
@@ -167,6 +174,7 @@ table.cal tbody td ul li:hover p {
     font-size:93%;
 
     -webkit-box-shadow: 2px 3px 10px rgba(0,0,0,.3);
+    -moz-box-shadow: 2px 3px 10px rgba(0,0,0,.3);
 }
  
 .yui3-overlay-content .yui3-widget-hd {
@@ -230,6 +238,7 @@ table.cal tbody td ul li:hover p {
     color: #333;
     background-color: #f0eee4;
     -webkit-box-shadow: 2px 3px 10px rgba(0,0,0,.3);
+    -moz-box-shadow: 2px 3px 10px rgba(0,0,0,.3);
 
     display: -webkit-box;
     -webkit-box-orient: horizontal;
