@@ -35,7 +35,7 @@ sub root : Chained('setup') PathPart('') Args() {
     );
     $fdom->add({ days => 1 });
     my @notes = 
-        grep { $_->date > $fdom && $_->date < $ldom }
+        grep { $_->date >= $fdom && $_->date <= $ldom }
         $person->notes->members;
     $c->stash->{notes} = {};
     my @ids = $c->model('KiokuDB')->directory->objects_to_ids( @notes );

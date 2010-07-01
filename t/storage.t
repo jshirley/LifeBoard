@@ -39,6 +39,8 @@ my $uuid;
     }
 }
 
+exit;
+
 $person = $d->lookup( $uuid );
 my $note;
 {

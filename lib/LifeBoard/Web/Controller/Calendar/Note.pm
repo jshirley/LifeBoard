@@ -13,6 +13,7 @@ BEGIN { extends 'Catalyst::Controller::REST' }
 sub setup : Chained('.') PathPart('note') CaptureArgs(0) {
     my ( $self, $c ) = @_;
 
+    $c->stash->{now} = DateTime->now;
     $c->stash->{page}->{layout} = 'partial';
 }
 
@@ -105,6 +106,41 @@ sub object_POST {
             markup  => $c->view('TT')->render($c, 'calendar/day.tt')
         }
     );
+
+}
+
+sub object_DELETE {
+    my ( $self, $c ) = @_;
+
+    my $person = $c->model('KiokuDB')->lookup( $c->user->get_object->kiokudb_object_id );
+    my $note   = $c->stash->{note};
+    my $date   = $note->date;
+
+    $person->notes->remove( $note );
+    $c->model('KiokuDB')->update( $person->notes );
+    $c->model('KiokuDB')->delete( $note );
+    $note = undef;
+
+    my @notes = 
+        grep { $_->date->ymd eq $date->ymd }
+        $person->notes->members;
+    
+    my @ids = $c->model('KiokuDB')->directory->objects_to_ids( @notes );
+    $c->stash->{notes}->{$date->ymd} = [];
+    foreach my $note ( @notes ) {
+        push @{ $c->stash->{notes}->{$date->ymd} },
+            { note => $note, id => shift @ids };
+    }
+
+    $c->stash->{day} = $date;
+    $self->status_ok(
+        $c,
+        entity => {
+            message => "The note has been added",
+            markup  => $c->view('TT')->render($c, 'calendar/day.tt')
+        }
+    );
+
 
 }
 

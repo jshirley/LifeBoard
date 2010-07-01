@@ -67,8 +67,8 @@ table.cal td:last-child {
 }
 
 table.cal tbody tr td.current {
-    background-color: #b31f1e;
-    background: -webkit-gradient(linear, left top, left bottom, from(rgba(255,255,255,0.9)), to(rgba(33,66,99, 0.2)));
+    background-color: #d9d9c7;
+    background: -webkit-gradient(linear, left top, left bottom, from(rgba(217,217,199,0.5)), to(rgba(217,217,199, 0.5)));
     background: -moz-linear-gradient(top, #ba3433, #b31f1e);
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ba3433', endColorstr='#b31f1e');
     color: #000;
@@ -108,9 +108,13 @@ table.cal tbody td ul {
 table.cal tbody td ul li {
     display: block;
     list-style: none;
-    margin: 0; padding: 1ex 0;
+    margin: 0 0 0 28px;
+    padding: 1ex 0;
     text-align: left;
+    min-height: 30px;
 }
+
+/*
 table.cal tbody td ul li a {
     background-color: #55aa2a;
     background: -webkit-gradient(linear, left top, left bottom, from(#72b94f), to(#55aa2a));
@@ -125,6 +129,19 @@ table.cal tbody td ul li a {
     margin: 0 2px 3px 2px; padding: 0 5px;
     text-decoration: none;
     text-shadow: #558342 0 -1px;
+}
+*/
+
+table.cal tbody td ul li:hover {
+    margin-left: 0;
+}
+
+table.cal tbody td ul li a { display: none; }
+table.cal tbody td ul li:hover a {
+    display: block;
+    width: 28px;
+    float: left;
+    text-align: center;
 }
 
 /* overlay CSS */
