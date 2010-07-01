@@ -1,0 +1,22 @@
+[%~
+
+page.head.stylesheets.push('print.css');
+page.head.scripts.push('print.js');
+
+~%]
+<div class="content">
+     [%~
+        IF messages;
+            FOREACH message IN messages;
+                SET message_type = message.type    || 'info';
+                SET message_msg = message.message || message;
+                IF message_msg %]
+        <div class="message [% message.type || 'info' %]">[% message.message %]</div>
+                [% END;
+            END;
+        END;
+        content
+     %]
+    <p>Page prepared for printing at [% now %]</p>
+</div>
+

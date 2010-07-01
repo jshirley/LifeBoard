@@ -1,0 +1,3 @@
+<header>
+    Today is [% now | date_long %], you are logged in as [% c.user.get_object.name %]
+</header>

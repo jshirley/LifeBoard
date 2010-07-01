@@ -1,0 +1,34 @@
+[%~
+page.title = c.loc('Calendar View');
+~%]
+<table class="cal">
+ <thead>
+  <tr>
+   <th colspan="7">
+    <a href="[% c.uri_for_action('/calendar/root', prev_day.year, prev_day.month) %]"><img height="16" width="16" src="[% static('images/actions/resultset_first.png') %]"></a>
+    [% first_day.month_name %] [% first_day.year %]
+    <a href="[% c.uri_for_action('/calendar/root', next_day.year, next_day.month) %]"><img height="16" width="16" src="[% static('images/actions/resultset_last.png') %]"></a>
+   </th>
+  </tr>
+  <tr>
+   <td>[% c.loc('Sunday') %]</td>
+   <td>[% c.loc('Monday') %]</td>
+   <td>[% c.loc('Tuesday') %]</td>
+   <td>[% c.loc('Wednesday') %]</td>
+   <td>[% c.loc('Thursday') %]</td>
+   <td>[% c.loc('Friday') %]</td>
+   <td>[% c.loc('Saturday') %]</td>
+  </tr>
+ </thead>
+ <tbody>
+  [% FOREACH day = days %]
+   [% IF day.day_of_week == 7 %]
+  <tr [% IF day.week_number == now.week_number && day.year == now.year %]class="current"[% END %]>
+   [% END %]
+      [% PROCESS "calendar/day.tt" %]
+   [% IF day.day_of_week == 6 %]
+  </tr>
+   [% END %]
+  [% END %]
+ </tbody>
+</table>

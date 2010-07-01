@@ -1,0 +1,20 @@
+<div class="pager">
+[% IF pager.previous_page %]
+ <!--<a class="control" href="[% c.req_uri_with({ page => pager.first_page }) %]">&laquo;</a>-->
+ <a  class="control" href="[% c.req.uri_with({ page => pager.previous_page }) %]">&lsaquo;</a>
+[% ELSE %]
+ <!--<span class="control">&laquo;</span>-->
+ <span class="control">&lsaquo;</span>
+[% END %]
+
+Page [% current_page %] of [% pager.last_page %]
+([% pager.entries_on_this_page %] of [% c.loc('SEARCH MATCHES', [ pager.total_entries ] ) %])
+
+[% IF pager.next_page %]
+ <a class="control" href="[% c.req.uri_with({ page => pager.next_page }) %]">&rsaquo;</a>
+ <!--<a class="control" href="[% c.req_uri_with({ page => pager.last_page }) %]">&raquo;</a>-->
+[% ELSE %]
+ <span class="control">&rsaquo;</span>
+ <!--<span class="control">&raquo;</span>-->
+[% END %]
+</div>

@@ -1,0 +1,21 @@
+[%~ IF messages || message_stack ~%]
+<div class="messages">
+[%~ FOREACH message IN messages;
+      SET message_type = message.type    || 'info';
+      SET message_msg = message.message || message;
+      IF message_msg %]
+      <div class="message [% message.type || 'info' %]">[% message.message %]</div>
+      [% END;
+    END ~%]
+ [% FOREACH gpos IN message_stack.for_scope('global').for_level('success').messages %]
+    <div class="gmessage" [% UNLESS gpos %]style="display: none"[% END %]><p>[% c.loc(gpos.id || gpos.text) %]</p></div>
+ [% END %]
+ [% FOREACH gerr IN message_stack.for_scope('global').for_level('error').messages %]
+    <div class="rmessage" [% UNLESS gerr %]style="display: none"[% END %]><p>[% c.loc(gerr.id || gerr.text) %]</p></div>
+ [% END %]
+ [% FOREACH gwarn IN message_stack.for_scope('global').for_level('warning').messages %]
+    <div class="omessage" [% UNLESS gwarn %]style="display: none"[% END %]><p>[% c.loc(gwarn.id || gwarn.text) %]</p></div>
+ [% END %]
+</div>
+[%~ END ~%]
+

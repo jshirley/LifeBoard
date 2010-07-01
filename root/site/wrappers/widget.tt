@@ -1,0 +1,5 @@
+<div class="widget
+    [%= args.classes.join(' ') ~%]
+">
+ <div class="inner">[% content %]</div>
+</div>

@@ -1,0 +1,195 @@
+html {
+    background-color: rgba(0,0,0,0.5);
+    background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(255, 255, 255, 0.9)), to(rgba(22, 39, 45, 0.3)));
+    height: 100%;
+}
+
+footer,
+header {
+    margin: 0;
+    padding: .7em 0 .5em 0;
+    background-color: #369;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(255, 255, 255, 0.8)), color-stop(0.3, rgba(255, 255, 255, 0.5)), color-stop(0.6, rgba(255, 255, 255, 0.3)), color-stop(0.6, transparent), to(rgba(0, 0, 0, 0.2)));
+    background-image: -moz-linear-gradient(top, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.5) 30%, rgba(255, 255, 255, 0.3) 60%, transparent 60%, rgba(0, 0, 0, 0.2)); /* Linear gradient for Mozilla browsers */
+    color: #fff;
+}
+
+header  {
+    color: #fff;
+    font-size: 22px;
+    text-shadow: #333 1px 1px 1px;
+    text-align: center; 
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    padding: 4px 0;
+    overflow: hidden;
+    background-color: #000;
+    font-size: 20px;
+    text-shadow: #555 1px 1px 1px;
+}
+
+footer a { color: #ccc; }
+
+table.cal {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table.cal thead th { border: none; border-bottom: 1px solid #000; }
+table.cal thead a {
+    background: #eee;
+    border: 1px solid #000;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    color: #3470a9;
+    margin: 0 2em;
+    padding: 4px 4px 3px 4px;
+    vertical-align: bottom;
+    text-decoration: none;
+}
+table.cal thead img { vertical-align: middle; }
+table.cal thead td {
+    background: #ccc;
+    border: none;
+    padding: .4em;
+    text-align: center;
+    width: 14%;
+}
+table.cal td:first-child,
+table.cal td:last-child {
+    border-left: none;
+    border-right: none;
+}
+
+table.cal tbody tr td.current {
+    background-color: #b31f1e;
+    background: -webkit-gradient(linear, left top, left bottom, from(rgba(255,255,255,0.9)), to(rgba(33,66,99, 0.2)));
+    background: -moz-linear-gradient(top, #ba3433, #b31f1e);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ba3433', endColorstr='#b31f1e');
+    color: #000;
+}
+table.cal tbody tr td.current a span {
+    float: left;
+    margin: 0 0 0 5px;
+}
+table.cal tbody tr td a {
+    padding: 0;
+}
+table.cal tbody tr td.do {
+    background-color: #d9d9c7;
+}
+table.cal tbody td {
+    background-color: #f0eee4;
+    padding: 4px;
+    margin: 0;
+    text-align: right;
+}
+table.cal tbody td:first-child {
+    border-left: none;
+}
+table.cal tbody td a {
+    color: #353535;
+    margin: 0; padding: 5px 5px 0 0;
+    text-align: right;
+    text-decoration: none;
+}
+table.cal tbody td.other a {
+    color: #999;
+}
+
+table.cal tbody td ul {
+    margin: 0; padding: 0;
+}
+table.cal tbody td ul li {
+    display: block;
+    list-style: none;
+    margin: 0; padding: 1ex 0;
+    text-align: left;
+}
+table.cal tbody td ul li a {
+    background-color: #55aa2a;
+    background: -webkit-gradient(linear, left top, left bottom, from(#72b94f), to(#55aa2a));
+    background: -moz-linear-gradient(top, #72b94f, #55aa2a);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#7ab94f', endColorstr='#55aa2a');
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    color: #fff;
+    display: block;
+    font-size: 12px;
+    margin: 0 2px 3px 2px; padding: 0 5px;
+    text-decoration: none;
+    text-shadow: #558342 0 -1px;
+}
+
+/* overlay CSS */
+.yui3-overlay-content {
+    padding:2px;
+    border: 1px solid #555;
+    background-color:#ccc;
+    font-size:93%;
+
+    -webkit-box-shadow: 2px 3px 10px rgba(0,0,0,.3);
+}
+ 
+.yui3-overlay-content .yui3-widget-hd {
+    font-weight:bold;
+    text-align:center;
+    padding:2px;
+    border:2px solid #ccc;
+}
+ 
+.yui3-overlay-content .yui3-widget-bd {
+    text-align:left;
+    padding:2px;
+    background-color: #ccc;
+}
+
+.yui3-overlay-content .yui3-widget-bd div {
+    text-align: center;
+    padding: 10px;
+}
+
+.yui3-overlay-content .yui3-widget-bd div input {
+    -webkit-border-radius: .5em;
+    -moz-border-radius: .5em;
+    border-radius: .5em;
+    -webkit-box-shadow: 0 3px 5px rgba(0,0,0,.3);
+    -moz-box-shadow: 0 3px 5px rgba(0,0,0,.3);
+    box-shadow: 0 3px 5px rgba(0,0,0,.3);
+    cursor: pointer;
+    display: inline-block;
+    font-size: 14px;
+    font-weight: bold;
+    outline: none;
+    padding: .5em 2em .55em;
+    text-align: center;
+    text-decoration: none;
+
+    border: solid 1px #da7c0c;
+    background-color: #de691f;
+    background: -webkit-gradient(linear, left top, left bottom, from(#faa51a), to(#f47a20));
+    background: -moz-linear-gradient(top,  #faa51a,  #f47a20);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#faa51a', endColorstr='#f47a20');
+    text-shadow: #95582d 0 -1px;
+}
+
+.yui3-overlay-content .yui3-widget-bd div input:hover {
+    background: #f47c20;
+    background: -webkit-gradient(linear, left top, left bottom, from(#f88e11), to(#f06015));
+    background: -moz-linear-gradient(top,  #f88e11,  #f06015);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f88e11', endColorstr='#f06015');
+}
+
+.yui3-overlay-content .yui3-widget-bd div input:active {
+    color: #fcd3a5;
+    background: -webkit-gradient(linear, left top, left bottom, from(#f47a20), to(#faa51a));
+    background: -moz-linear-gradient(top,  #f47a20,  #faa51a);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f47a20', endColorstr='#faa51a');
+}
+

@@ -1,0 +1,52 @@
+[%~
+
+MACRO ref(var) BLOCK;
+    var_ref = "$var";
+    var_ref.match('^([A-Z]+)\\(0x[0-9a-f]+\\)$').0;
+END;
+
+# Wraps c.uri_for to point to static resources either inside the
+# /root/static structure or explicit URIs.  Assumes 
+MACRO static(res, versioned, query) BLOCK;
+    c.static_uri( res, versioned, query );
+END;
+
+MACRO legacy_uri(res, versioned, query) BLOCK;
+    c.legacy_uri( res, versioned, query );
+END;
+
+# Set up the default stash structure for the page
+IF !page || !ref(page) == 'HASH';
+    page = {};
+END;
+#DEFAULT page.title  = c.config.name || 'LifeBoard';
+DEFAULT page.breadcrumbs = [];
+DEFAULT page.layout = 'default';
+DEFAULT page.header = 'default';
+DEFAULT page.nav    = 'default';
+DEFAULT page.footer = 'default';
+DEFAULT page.footer = 'default';
+DEFAULT page.language = 'en';
+DEFAULT page.head             = {};
+DEFAULT page.head.stylesheets = [
+    'http://yui.yahooapis.com/combo?3.1.1/build/cssfonts/fonts-min.css&3.1.1/build/cssreset/reset-min.css&3.1.1/build/cssgrids/grids-min.css&3.1.1/build/cssbase/base-min.css',
+    'screen.css'
+];
+DEFAULT page.head.scripts     = [];
+DEFAULT page.body             = {};
+DEFAULT page.body.classes     = ['yui3-skin-sam'];
+DEFAULT page.body.scripts     = [
+    'http://yui.yahooapis.com/3.1.1/build/yui/yui-min.js',
+    'global.js',
+];
+DEFAULT page.content_class    = 'content';
+DEFAULT page.gutter           = 'default';
+
+# Include global macros/vars/set up per implementation
+TRY; 
+    PROCESS site/global.tt; 
+CATCH file;
+    IF c.debug; "<pre>";error;"</pre>"; END;
+END;
+
+~%]

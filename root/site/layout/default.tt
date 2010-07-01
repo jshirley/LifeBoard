@@ -1,0 +1,23 @@
+[%~
+
+page.body.id = 'doc3';
+page.content_class = 'bd';
+
+IF page.header && page.header != 'none';
+    header = PROCESS "site/header/${page.header}.tt";
+END;
+
+IF page.footer && page.header != 'none';
+    footer = PROCESS "site/footer/${page.footer}.tt";
+END;
+
+~%]
+<div class="container">
+    [% header %]
+    <div class="main section">
+        <div class="content yui3-main">
+            [% content %]
+        </div>
+    </div>
+    [% footer %]
+</div>

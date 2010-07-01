@@ -1,0 +1,18 @@
+[%~
+
+DEFAULT section.action = c.uri_for_action('/auth/login');
+DEFAULT section.title  = c.loc('Login');
+DEFAULT section.scope  = 'login';
+
+text_field({
+    label    => 'Login', name => 'id',
+    value    => form.id.value || c.user.id,
+});
+
+password_field({
+    label => 'Password', name => 'password',
+    value => '', autocomplete => 0
+});
+
+~%]
+

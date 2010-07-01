@@ -1,0 +1,5 @@
+---
+name: LifeBoard
+Model::KiokuDB:
+    dsn: 'dbi:SQLite:dbname=__path_to(var/lifeboard.db)__'
+

@@ -1,0 +1,28 @@
+[%~ 
+
+IF c.debug && debug_init.defined; $debug_init; END;
+
+%]
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+ <head>
+  <title>[% IF page.title; page.title; " - "; c.config.name; ELSE; c.config.name; END; %]</title>
+  <meta http-equiv="Content-Language" content="[% page.language %]" >
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" >
+ </head>
+ <body
+    [%~ IF page.body.id %] id="[% page.body.id %]"[% END =%]
+    class="[% page.body.classes.join(' ') %]">
+     [% content %]
+[% IF !c.debug %]
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+var pageTracker = _gat._getTracker("UA-394065-3");
+pageTracker._trackPageview();
+</script>
+[% END %]
+ </body>
+</html>

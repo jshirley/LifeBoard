@@ -1,0 +1,14 @@
+[%~
+# Process the appropriate layout
+IF page.layout == 'partial';
+    content;
+ELSE;
+    IF page.layout == 'email';
+        content WRAPPER site/html_email.tt + "site/layout/${page.layout}.tt";
+    ELSIF page.layout == 'none';
+        content WRAPPER site/html.tt;
+    ELSE;
+        content WRAPPER site/html.tt + "site/layout/${page.layout}.tt";
+    END;
+END;
+~%]
