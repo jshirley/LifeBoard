@@ -8,7 +8,7 @@ YUI().use("io-form", "json", "substitute", "datatype-date", "overlay", "event-de
     // XX this has to be done better somehow.
     table.all('tbody td').setStyle('height', height + 'px');
 
-    var blank_content = "<form method=\"post\" action=\"/calendar/note{id}\"><input type=\"hidden\" name=\"date\" value=\"{date}\"><textarea style=\"width: 100%; height: 90%;\" name=\"note\">{note}</textarea><div><input type=\"submit\" value=\"Save note\"></div></form>";
+    var blank_content = "<form method=\"post\" action=\"/calendar/note{id}\"><input type=\"hidden\" name=\"date\" value=\"{date}\"><textarea style=\"width: 100%; height: " + ( height * 3 ) + "px;\" name=\"note\">{note}</textarea><div><input type=\"submit\" value=\"Save note\"></div></form>";
 
     var overlay = new Y.Overlay({
         width: "80%",
