@@ -35,21 +35,24 @@ sub root_POST {
     $c->stash->{day} = $date;
 
     my @notes;
+
     my $note = $person->add_note(
         date     => $date,
         contents => $data->{note}
     );
-    $c->model('KiokuDB')->store( $person );
+    # Update the note
+    $c->model('KiokuDB')->insert( $note );
+    $c->model('KiokuDB')->update( $note->day );
 
-    @notes = $person->notes->members;
-    @notes = grep { $_->date->ymd eq $date->ymd } @notes;
-    
-    my @ids = $c->model('KiokuDB')->directory->objects_to_ids( @notes );
-    $c->stash->{notes}->{$date->ymd} = [];
+    my @notes =
+        $person->get_calendar( $date->year )
+               ->get_month( $date->month )
+               ->get_day( $date->day )
+               ->all_notes;
+    $c->stash->{notes} = {};
     foreach my $note ( @notes ) {
-        $c->log->debug("Adding note: $ids[0], note: " . $note->contents);
-        push @{ $c->stash->{notes}->{$date->ymd} },
-            { note => $note, id => shift @ids };
+        $c->stash->{notes}->{$note->date->ymd} ||= [];
+        push @{ $c->stash->{notes}->{$note->date->ymd} }, $note;
     }
 
     $self->status_ok(
@@ -79,7 +82,7 @@ sub object_POST {
         DateTime::Format::SQLite->parse_date( $data->{date} ) :
         DateTime->now;
 
-    my $person = $c->model('KiokuDB')->lookup( $c->user->get_object->kiokudb_object_id );
+    my $person = $c->user->get_object;
     my $note   = $c->stash->{note};
 
     $c->stash->{day} = $date;
@@ -89,15 +92,15 @@ sub object_POST {
 
     $c->model('KiokuDB')->update( $note );
 
-    my @notes = 
-        grep { $_->date->ymd eq $date->ymd }
-        $person->notes->members;
-    
-    my @ids = $c->model('KiokuDB')->directory->objects_to_ids( @notes );
-    $c->stash->{notes}->{$date->ymd} = [];
+    my @notes =
+        $person->get_calendar( $date->year )
+               ->get_month( $date->month )
+               ->get_day( $date->day )
+               ->all_notes;
+    $c->stash->{notes} = {};
     foreach my $note ( @notes ) {
-        push @{ $c->stash->{notes}->{$date->ymd} },
-            { note => $note, id => shift @ids };
+        $c->stash->{notes}->{$note->date->ymd} ||= [];
+        push @{ $c->stash->{notes}->{$note->date->ymd} }, $note;
     }
 
     $self->status_ok(

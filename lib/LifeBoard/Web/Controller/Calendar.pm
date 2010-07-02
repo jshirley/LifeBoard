@@ -35,20 +35,22 @@ sub root : Chained('setup') PathPart('') Args() {
         DateTime::Duration->new( months => 1)
     );
     $fdom->add({ days => 1 });
-    my @notes = 
-        grep { $_->date >= $fdom && $_->date <= $ldom }
-        $person->notes->members;
+
+    my @notes =
+        $person->get_calendar( $req_day->year )
+               ->get_month( $req_day->month )
+               ->all_notes;
+$c->log->debug("Got " . scalar(@notes) . " notes");
     $c->stash->{notes} = {};
-    my @ids = $c->model('KiokuDB')->directory->objects_to_ids( @notes );
     foreach my $note ( @notes ) {
+        $c->log->debug("Note: " . $note->contents);
         $c->stash->{notes}->{$note->date->ymd} ||= [];
-        push @{ $c->stash->{notes}->{$note->date->ymd} },
-            { note => $note, id => shift @ids };
+        push @{ $c->stash->{notes}->{$note->date->ymd} }, $note;
     }
 
     my @days = ();
-    if($fdom->day_of_week != 7) {
 
+    if($fdom->day_of_week != 7) {
         my $prev_day = $fdom->clone->subtract_duration(
             DateTime::Duration->new(days => 1)
         );

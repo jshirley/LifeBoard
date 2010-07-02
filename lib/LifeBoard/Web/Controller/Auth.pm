@@ -112,9 +112,8 @@ sub register : Chained('setup') Args(0) {
         password => crypt_password($results->get_value('password')),
     );
     my $person = LifeBoard::Schema::Person->new( %args );
-    $db->store( $person );
+    $c->model('KiokuDB')->insert_person( $person );
     $c->message($c->loc('Thank you for registering, you are ready to go'));
-    $db->store( $person );
     $c->res->redirect( $c->uri_for_action('/auth/login') );
 }
 

@@ -20,13 +20,10 @@ is( $person->name, 'Test McTesty', 'name attribute' );
 ok(  $person->check_password('tester'), 'positive password check' );
 ok( !$person->check_password('negative'), 'negative password check' );
 
-is_deeply( [ $person->friends->members ], [ ], 'no friends' );
-is_deeply( [ $person->notes->members ], [ ], 'no notes' );
-
 my $note = $person->add_note(
     contents => 'This is a simple test note',
     date     => DateTime->now,
 );
 
-is_deeply( [ $person->notes->members ], [ $note ], 'note added' );
+is_deeply( $person->notes,  [ $note ], 'note added' );
 

@@ -1,10 +1,23 @@
 package LifeBoard::Schema::Note;
 
 use Moose;
-use MooseX::Types::DateTime 'DateTime';
+use MooseX::Types::DateTime qw(DateTime);
 use URI;
 
 use namespace::autoclean;
+
+use LifeBoard::Schema::Day;
+
+with 'KiokuDB::Role::UUIDs', 'KiokuDB::Role::ID';
+
+sub kiokudb_object_id { shift->id };
+
+has id => (
+    isa         => "Str",
+    is          => "ro",
+    lazy_build  => 1,
+    builder     => "generate_uuid"
+);
 
 has contents => (
     isa         => 'Str',
@@ -14,9 +27,14 @@ has contents => (
 
 has date => (
     isa         => 'DateTime',
-    is          => 'rw',
+    is          => 'ro',
     coerce      => 1,
-    required    => 1,
+    required    => 1
+);
+
+has day => (
+    isa         => 'LifeBoard::Schema::Day',
+    is          => 'rw',
 );
 
 has pictures => (

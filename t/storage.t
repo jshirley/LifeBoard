@@ -39,25 +39,34 @@ my $uuid;
     }
 }
 
-diag("ID is: $uuid");
 $person = $d->lookup( $uuid );
 ok($d->exists($uuid), 'exists is ok');
 ok(!$d->exists($uuid . "blahblah"), '!exists is ok');
 
-my $note;
+my $note_id;
 {
     my $s = $d->new_scope;
     
     ok( $person, 'got person from lookup' );
-
+    my $now  = DateTime->now;
     my $note = $person->add_note(
-        date     => DateTime->now,
+        date     => $now,
         contents => "Just a test note"
     );
+    is_deeply( $person->notes, [ $note ], 'got note after store' );
+    cmp_ok( $person->get_calendar( $now->year )->get_month( $now->month )->get_day( $now->day )->has_notes, '==', 1, 'right note count' );
+
     $d->store( $person );
-    is_deeply( [ $person->notes->members ], [ $note ], 'got note after store' )
+    $note_id = $note->id;
 }
 
-is( $person->notes->members->contents, 'Just a test note', 'have one note' );
+{
+    $d->live_objects->clear;
+    my $s = $d->new_scope;
+    diag( $note_id );
+    my $fresh_note = $d->lookup( $note_id );
+    diag( $fresh_note );
+    ok( $fresh_note, 'got fresh note' );
+}
 
 done_testing;
