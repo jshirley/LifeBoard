@@ -14,6 +14,7 @@ sub setup : Chained('.') PathPart('note') CaptureArgs(0) {
     my ( $self, $c ) = @_;
 
     $c->stash->{now} = DateTime->now;
+        $c->stash->{now}->set_time_zone( 'America/Los_Angeles' );
     $c->stash->{page}->{layout} = 'partial';
 }
 

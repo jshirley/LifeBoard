@@ -16,6 +16,7 @@ sub root : Chained('setup') PathPart('') Args() {
 
     my $person  = $c->user->get_object;
     my $now     = DateTime->now;
+        $now->set_time_zone( 'America/Los_Angeles' );
     my $req_day = $now->clone;
 
     if ( $year && $month ) {
