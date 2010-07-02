@@ -39,9 +39,11 @@ my $uuid;
     }
 }
 
-exit;
-
+diag("ID is: $uuid");
 $person = $d->lookup( $uuid );
+ok($d->exists($uuid), 'exists is ok');
+ok(!$d->exists($uuid . "blahblah"), '!exists is ok');
+
 my $note;
 {
     my $s = $d->new_scope;

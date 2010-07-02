@@ -19,6 +19,7 @@ requires 'YAML';
 
 requires 'KiokuDB';
 requires 'KiokuX::User';
+requires 'KiokuX::Model';
 requires 'KiokuDB::Backend::DBI';
 requires 'Catalyst::Model::KiokuDB';
 requires 'Catalyst::Authentication::Store::KiokuDB';

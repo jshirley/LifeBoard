@@ -240,13 +240,17 @@ table.cal tbody td ul li:hover p {
     -webkit-box-shadow: 2px 3px 10px rgba(0,0,0,.3);
     -moz-box-shadow: 2px 3px 10px rgba(0,0,0,.3);
 
+    display: -moz-box;
     display: -webkit-box;
     -webkit-box-orient: horizontal;
     -webkit-box-align: stretch;
+    -moz-box-orient: horizontal;
+    -moz-box-align: stretch;
 }
 
 .split-page .hbox {
     -webkit-box-flex: 1;
+    -moz-box-flex: 1;
     display: block;
     padding: 2em;
 }
