@@ -1,4 +1,7 @@
-[%~ DEFAULT message_scope = 'global' ~%]
+[%~
+DEFAULT message_scope = 'global';
+IF message_stack.has_messages;
+~%]
 <section class="message">
  [% FOREACH gpos IN message_stack.for_scope(message_scope).for_level('success').messages %]
     <aside class="gmessage" [% UNLESS gpos %]style="display: none"[% END %]><p>[% c.loc(gpos.id || gpos.text) %]</p></aside>
@@ -9,4 +12,5 @@
  [% FOREACH gwarn IN message_stack.for_scope(message_scope).for_level('warning').messages %]
  	<aside class="omessage" [% UNLESS gwarn %]style="display: none"[% END %]><p>[% c.loc(gwarn.id || gwarn.text) %]</p></aside>
  [% END %]
-</section>
+ </section>
+[%~ END; ~%] 
